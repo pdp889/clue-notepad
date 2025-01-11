@@ -38,9 +38,4 @@ public class HandController {
     public void deleteHand(@PathVariable Long id){
         deleteHandUseCase.execute(id);
     }
-
-    @GetMapping("/")
-    public String get(){
-        return "success";
-    }
 }

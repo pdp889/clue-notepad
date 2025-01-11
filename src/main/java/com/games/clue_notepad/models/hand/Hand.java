@@ -42,9 +42,5 @@ public class Hand {
         card.setHand(this);
         cards.add(card);
     }
-    public void addQuestion(Question question) {
-        question.setHand(this);
-        questions.add(question);
-    }
 
 }
