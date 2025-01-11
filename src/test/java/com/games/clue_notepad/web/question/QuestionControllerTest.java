@@ -1,18 +1,17 @@
-package com.games.clue_notepad.web.hand;
+package com.games.clue_notepad.web.question;
 
 import com.games.clue_notepad.models.card.CardType;
-import com.games.clue_notepad.models.hand.Hand;
 import com.games.clue_notepad.web.game.GameController;
 import com.games.clue_notepad.web.game.GameViewModel;
-import com.games.clue_notepad.web.question.QuestionController;
-import com.games.clue_notepad.web.question.QuestionViewModel;
+import com.games.clue_notepad.web.hand.CardViewModel;
+import com.games.clue_notepad.web.hand.HandController;
+import com.games.clue_notepad.web.hand.HandViewModel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,10 +1,8 @@
 package com.games.clue_notepad.services.game;
 
 import com.games.clue_notepad.models.game.Game;
-import com.games.clue_notepad.models.hand.Hand;
 import com.games.clue_notepad.repos.game.GameRepo;
 import com.games.clue_notepad.web.game.GameViewModel;
-import com.games.clue_notepad.web.hand.HandViewModel;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

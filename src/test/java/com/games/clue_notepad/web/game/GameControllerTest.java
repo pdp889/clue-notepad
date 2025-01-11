@@ -1,12 +1,9 @@
 package com.games.clue_notepad.web.game;
 
-import com.games.clue_notepad.web.game.GameController;
-import com.games.clue_notepad.web.game.GameViewModel;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 
 import java.util.NoSuchElementException;
 
