@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -30,6 +32,10 @@ public class GameService {
         game.setName(gameViewModel.getName());
         return game;
     }
+
+    public List<Game> getAll(){
+        return gameRepo.findAll();
+    };
 
     public void delete(Long id){
         gameRepo.deleteById(id);
