@@ -1,14 +1,15 @@
 package com.games.clue_notepad.services.hand;
 
-import com.games.clue_notepad.models.card.Card;
 import com.games.clue_notepad.models.game.Game;
 import com.games.clue_notepad.models.hand.Hand;
 import com.games.clue_notepad.repos.hand.HandRepo;
-import com.games.clue_notepad.web.hand.CardViewModel;
 import com.games.clue_notepad.web.hand.HandViewModel;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +22,10 @@ public class HandService {
 
     public Hand getById(Long id){
         return handRepo.findById(id).orElseThrow();
+    }
+
+    public List<Hand> getByGameId(Long id){
+        return handRepo.findAllByGameId(id);
     }
 
     public Hand create(HandViewModel handViewModel, Game game){
@@ -36,16 +41,8 @@ public class HandService {
     public Hand sharedSave(HandViewModel handViewModel, Hand hand){
         hand.setPlayerName(handViewModel.getPlayerName());
         hand.setCardCount(handViewModel.getCardCount());
-        hand.getCards().clear();
-
-        handViewModel.getCards().stream()
-                .map(this::toModel)
-                .forEach(hand::addCard);
+        hand.setCards(new HashSet<>(handViewModel.getCards()));
 
         return hand;
-    }
-
-    public Card toModel(CardViewModel cardViewModel){
-        return Card.builder().cardType(cardViewModel.getCardType()).build();
     }
 }

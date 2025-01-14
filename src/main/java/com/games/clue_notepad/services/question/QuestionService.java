@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +23,9 @@ public class QuestionService {
         return questionRepo.findById(id).orElseThrow();
     }
 
+    public List<Question> getByGameId(Long gameId) {
+        return questionRepo.findAllByGameId(gameId);
+    }
     public Question create(QuestionViewModel questionViewModel, Game game){
         Question question = Question.builder().game(game).build();
         return questionRepo.save(sharedSave(questionViewModel, question));

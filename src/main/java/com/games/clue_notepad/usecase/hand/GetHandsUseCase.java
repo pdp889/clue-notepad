@@ -7,15 +7,17 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
-public class GetHandUseCase {
+public class GetHandsUseCase {
 
     private final HandService handService;
 
     @Transactional
-    public HandViewModel execute(Long id){
-        Hand hand = handService.getById(id);
-        return HandMapper.toViewModel(hand);
+    public List<HandViewModel> execute(Long gameId){
+        List<Hand> hands = handService.getByGameId(gameId);
+        return hands.stream().map(HandMapper::toViewModel).toList();
     }
 }

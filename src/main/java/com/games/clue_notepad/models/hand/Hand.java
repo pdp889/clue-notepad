@@ -1,6 +1,6 @@
 package com.games.clue_notepad.models.hand;
 
-import com.games.clue_notepad.models.card.Card;
+import com.games.clue_notepad.models.card.CardType;
 import com.games.clue_notepad.models.game.Game;
 import com.games.clue_notepad.models.question.Question;
 import jakarta.persistence.*;
@@ -22,9 +22,12 @@ public class Hand {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
 
+    @ElementCollection(targetClass = CardType.class)
+    @CollectionTable(name = "hand_cards", joinColumns = @JoinColumn(name = "hand_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "card_type")
     @Builder.Default
-    @OneToMany(mappedBy = "hand", cascade = CascadeType.ALL, orphanRemoval = true)
-    Set<Card> cards = new HashSet<>();
+    Set<CardType> cards = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
@@ -37,10 +40,4 @@ public class Hand {
     String playerName;
 
     Integer cardCount;
-
-    public void addCard(Card card) {
-        card.setHand(this);
-        cards.add(card);
-    }
-
 }

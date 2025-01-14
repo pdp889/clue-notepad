@@ -2,6 +2,9 @@ package com.games.clue_notepad.models.card;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 public enum CardType {
 
@@ -38,5 +41,9 @@ public enum CardType {
     CardType(CardCategory category, String label) {
         this.category = category;
         this.label = label;
+    }
+
+    public static List<CardType> getCardTypesForCategory(CardCategory category){
+        return Arrays.stream(CardType.values()).filter(type -> category.equals(type.getCategory())).toList();
     }
 }

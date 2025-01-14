@@ -3,7 +3,6 @@ package com.games.clue_notepad.web.question;
 import com.games.clue_notepad.models.card.CardType;
 import com.games.clue_notepad.web.game.GameController;
 import com.games.clue_notepad.web.game.GameViewModel;
-import com.games.clue_notepad.web.hand.CardViewModel;
 import com.games.clue_notepad.web.hand.HandController;
 import com.games.clue_notepad.web.hand.HandViewModel;
 import org.junit.jupiter.api.Test;
@@ -31,12 +30,7 @@ public class QuestionControllerTest {
     void testHandsController(){
         Long gameId1 = gameController.createGame(GameViewModel.builder().name("Game 1").build()).getBody().getId();
 
-        CardViewModel card1 = CardViewModel.builder().cardType(CardType.BALLROOM).build();
-        CardViewModel card2 = CardViewModel.builder().cardType(CardType.SCARLET).build();
-        CardViewModel card3 = CardViewModel.builder().cardType(CardType.CANDLESTICK).build();
-        CardViewModel card4 = CardViewModel.builder().cardType(CardType.DINING_ROOM).build();
-
-        HandViewModel hand1 = HandViewModel.builder().playerName("Player 1").cardCount(4).cards(List.of(card1, card2, card3, card4)).build();
+        HandViewModel hand1 = HandViewModel.builder().playerName("Player 1").cardCount(4).cards(List.of(CardType.BALLROOM, CardType.SCARLET, CardType.CANDLESTICK, CardType.DINING_ROOM)).build();
         HandViewModel hand2 = HandViewModel.builder().playerName("Player 2").cardCount(4).build();
         HandViewModel hand3 = HandViewModel.builder().playerName("Player 3").cardCount(4).build();
         HandViewModel hand4 = HandViewModel.builder().playerName("Player 4").cardCount(4).build();

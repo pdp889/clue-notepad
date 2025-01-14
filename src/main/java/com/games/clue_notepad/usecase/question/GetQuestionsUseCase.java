@@ -7,14 +7,16 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
-public class GetQuestionUseCase {
+public class GetQuestionsUseCase {
     private final QuestionService questionService;
 
 @Transactional
-public QuestionViewModel execute(Long id){
-        Question question = questionService.getById(id);
-        return QuestionMapper.toViewModel(question);
+public List<QuestionViewModel> execute(Long id){
+        List<Question> questions = questionService.getByGameId(id);
+        return questions.stream().map(QuestionMapper::toViewModel).toList();
     }
 }

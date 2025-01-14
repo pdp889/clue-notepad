@@ -1,6 +1,5 @@
-package com.games.clue_notepad.web.hand;
+package com.games.clue_notepad.web.cardtype;
 
-import com.games.clue_notepad.models.card.CardType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,13 +13,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class HandViewModel {
-    Long id;
+public class CardCategoryViewModel {
+    String value;
+    String label;
 
     @Builder.Default
-    List<CardType> cards = new ArrayList<>();
-
-    String playerName;
-
-    Integer cardCount;
+    List<CardTypeViewModel> cardTypes = new ArrayList<>();
 }

@@ -2,11 +2,13 @@ package com.games.clue_notepad.web.hand;
 
 import com.games.clue_notepad.usecase.hand.CreateHandUseCase;
 import com.games.clue_notepad.usecase.hand.DeleteHandUseCase;
-import com.games.clue_notepad.usecase.hand.GetHandUseCase;
+import com.games.clue_notepad.usecase.hand.GetHandsUseCase;
 import com.games.clue_notepad.usecase.hand.UpdateHandUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,7 +18,7 @@ public class HandController {
 
     private final CreateHandUseCase createHandUseCase;
     private final DeleteHandUseCase deleteHandUseCase;
-    private final GetHandUseCase getHandUseCase;
+    private final GetHandsUseCase getHandsUseCase;
     private final UpdateHandUseCase updateHandUseCase;
 
     @PostMapping("/{gameId}")
@@ -29,9 +31,9 @@ public class HandController {
         return ResponseEntity.ok(updateHandUseCase.execute(id, handViewModel));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<HandViewModel> getHand(@PathVariable Long id){
-        return ResponseEntity.ok(getHandUseCase.execute(id));
+    @GetMapping("/{gameId}")
+    public ResponseEntity<List<HandViewModel>> getHands(@PathVariable Long gameId){
+        return ResponseEntity.ok(getHandsUseCase.execute(gameId));
     }
 
     @DeleteMapping("/{id}")

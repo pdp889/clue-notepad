@@ -2,11 +2,13 @@ package com.games.clue_notepad.web.question;
 
 import com.games.clue_notepad.usecase.question.CreateQuestionUseCase;
 import com.games.clue_notepad.usecase.question.DeleteQuestionUseCase;
-import com.games.clue_notepad.usecase.question.GetQuestionUseCase;
+import com.games.clue_notepad.usecase.question.GetQuestionsUseCase;
 import com.games.clue_notepad.usecase.question.UpdateQuestionUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -15,7 +17,7 @@ public class QuestionController {
     private final CreateQuestionUseCase createQuestionUseCase;
     private final DeleteQuestionUseCase deleteQuestionUseCase;
     private final UpdateQuestionUseCase updateQuestionUseCase;
-    private final GetQuestionUseCase getQuestionUseCase;
+    private final GetQuestionsUseCase getQuestionsUseCase;
     @PostMapping("/{gameId}")
     public ResponseEntity<QuestionViewModel> createQuestion(@PathVariable Long gameId, @RequestBody QuestionViewModel questionViewModel){
         return ResponseEntity.ok(createQuestionUseCase.execute(gameId, questionViewModel));
@@ -26,9 +28,9 @@ public class QuestionController {
         return ResponseEntity.ok(updateQuestionUseCase.execute(id, questionViewModel));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<QuestionViewModel> getQuestion(@PathVariable Long id){
-        return ResponseEntity.ok(getQuestionUseCase.execute(id));
+    @GetMapping("/{gameId}")
+    public ResponseEntity<List<QuestionViewModel>> getQuestions(@PathVariable Long gameId){
+        return ResponseEntity.ok(getQuestionsUseCase.execute(gameId));
     }
 
     @DeleteMapping("/{id}")

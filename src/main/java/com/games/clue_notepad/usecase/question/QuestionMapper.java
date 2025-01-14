@@ -12,7 +12,7 @@ public class QuestionMapper {
         return QuestionViewModel.builder()
                 .id(question.getId())
                 .hand(HandMapper.toViewModel(question.getHand()))
-                .cardTypes(question.getCardTypes().stream().toList())
+                .cardTypes(question.getCardTypes().stream().sorted().toList())
                 .cardTypeShown(question.getCardTypeShown())
                 .showingCard(question.isShowingCard())
                 .build();
