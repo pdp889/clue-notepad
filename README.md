@@ -13,7 +13,7 @@ A Spring Boot application that serves as a digital assistant for playing Clue. O
 ## Features
 
 * Tracks cards, hands, and questions
-* Automatically deduces the best most complete possible board through several inference steps
+* Automatically deduces the most complete possible board through several inference steps
 * 100% Test Coverage
 
 ## Core Components
