@@ -34,5 +34,3 @@ CREATE TABLE question_card_types (
     PRIMARY KEY (question_id, card_type),
     FOREIGN KEY (question_id) REFERENCES question(id)
 );
-
-

@@ -8,12 +8,12 @@ import java.util.List;
 
 public enum CardType {
 
-    WHITE(CardCategory.PERSON, "Miss Scarlet"),
+    WHITE(CardCategory.PERSON, "Mrs. White"),
     MUSTARD(CardCategory.PERSON, "Colonel Mustard"),
     GREEN(CardCategory.PERSON, "Mr. Green"),
     PEACOCK(CardCategory.PERSON, "Mrs. Peacock"),
     PLUM(CardCategory.PERSON, "Professor Plum"),
-    SCARLET(CardCategory.PERSON, "Mrs. Peacock"),
+    SCARLET(CardCategory.PERSON, "Ms. Scarlet"),
 
     CANDLESTICK(CardCategory.WEAPON, "Candlestick"),
     KNIFE(CardCategory.WEAPON, "Knife"),

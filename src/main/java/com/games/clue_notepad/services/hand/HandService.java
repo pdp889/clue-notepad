@@ -40,7 +40,11 @@ public class HandService {
 
     public Hand sharedSave(HandViewModel handViewModel, Hand hand){
         hand.setPlayerName(handViewModel.getPlayerName());
-        hand.setCardCount(handViewModel.getCardCount());
+        if (handViewModel.getCardCount() == null && !handViewModel.getCards().isEmpty()) {
+            hand.setCardCount(handViewModel.getCards().size());
+        } else {
+            hand.setCardCount(handViewModel.getCardCount());
+        }
         hand.setCards(new HashSet<>(handViewModel.getCards()));
 
         return hand;

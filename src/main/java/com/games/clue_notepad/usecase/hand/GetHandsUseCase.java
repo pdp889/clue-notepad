@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Component
@@ -18,6 +19,8 @@ public class GetHandsUseCase {
     @Transactional
     public List<HandViewModel> execute(Long gameId){
         List<Hand> hands = handService.getByGameId(gameId);
-        return hands.stream().map(HandMapper::toViewModel).toList();
+        return hands.stream()
+                .sorted(Comparator.comparing(Hand::getId))
+                .map(HandMapper::toViewModel).toList();
     }
 }

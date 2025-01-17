@@ -1,5 +1,6 @@
 package com.games.clue_notepad.web.game;
 
+import com.games.clue_notepad.usecase.board.GetBoardUseCase;
 import com.games.clue_notepad.usecase.game.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class GameController {
     private final UpdateGameUseCase updateGameUseCase;
     private final GetGameUseCase getGameUseCase;
     private final GetGamesUseCase getGamesUseCase;
-
+    private final GetBoardUseCase getBoardUseCase;
 
     @PostMapping()
     public ResponseEntity<GameViewModel> createGame(@RequestBody GameViewModel gameViewModel){
@@ -41,5 +42,10 @@ public class GameController {
     @DeleteMapping("/{id}")
     public void deleteGame(@PathVariable Long id){
         deleteGameUseCase.execute(id);
+    }
+
+    @GetMapping("/{id}/board")
+    public ResponseEntity<BoardViewModel> getBoard(@PathVariable Long id){
+        return ResponseEntity.ok(getBoardUseCase.execute(id));
     }
 }

@@ -3,6 +3,7 @@ package com.games.clue_notepad.models.question;
 import com.games.clue_notepad.models.card.CardType;
 import com.games.clue_notepad.models.game.Game;
 import com.games.clue_notepad.models.hand.Hand;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,6 +35,7 @@ public class Question {
 
     boolean showingCard;
 
+    @Enumerated(EnumType.STRING)
     CardType cardTypeShown;
 
     @ManyToOne(fetch = FetchType.LAZY)

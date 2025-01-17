@@ -10,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 public class QuestionControllerTest {
@@ -48,15 +47,14 @@ public class QuestionControllerTest {
         assertThat(questionViewModel.getCardTypes().stream()).containsExactlyInAnyOrder(CardType.BALLROOM, CardType.REVOLVER, CardType.PEACOCK);
         assertThat(questionViewModel.isShowingCard()).isFalse();
 
-        questionViewModel = questionController.getQuestion(questionId).getBody();
+        questionViewModel = questionController.getQuestions(gameId1).getBody().stream().filter(q -> Objects.equals(q.id, questionId)).findFirst().orElseThrow();
         assertThat(questionViewModel.getCardTypes().stream()).containsExactlyInAnyOrder(CardType.BALLROOM, CardType.REVOLVER, CardType.PEACOCK);
         assertThat(questionViewModel.isShowingCard()).isFalse();
 
-        GameViewModel gameViewModel = gameController.getGame(gameId1).getBody();
-
-        assertThat(gameViewModel.getQuestions()).hasSize(1);
-        assertThat(gameViewModel.getQuestions().stream().findFirst().orElseThrow().getCardTypes().stream()).containsExactlyInAnyOrder(CardType.BALLROOM, CardType.REVOLVER, CardType.PEACOCK);
-        assertThat(gameViewModel.getQuestions()).hasSize(1).extracting(q -> q.getHand().getPlayerName()).containsExactlyInAnyOrder("Player 2");
+        List<QuestionViewModel> game1Questions = questionController.getQuestions(gameId1).getBody();
+        assertThat(game1Questions).hasSize(1);
+        assertThat(game1Questions.stream().findFirst().orElseThrow().getCardTypes().stream()).containsExactlyInAnyOrder(CardType.BALLROOM, CardType.REVOLVER, CardType.PEACOCK);
+        assertThat(game1Questions).hasSize(1).extracting(q -> q.getHand().getPlayerName()).containsExactlyInAnyOrder("Player 2");
 
         questionViewModel.setShowingCard(true);
 
@@ -64,15 +62,15 @@ public class QuestionControllerTest {
         assertThat(questionViewModel.isShowingCard()).isTrue();
 
         handController.deleteHand(handId2);
-        assertThrows(NoSuchElementException.class, () -> handController.getHand(handId2));
-        assertThrows(NoSuchElementException.class, () -> questionController.getQuestion(questionId));
+        assertThat(handController.getHands(gameId1).getBody()).extracting(HandViewModel::getId).doesNotContain(handId2);
+        assertThat(questionController.getQuestions(gameId1).getBody()).extracting(QuestionViewModel::getId).doesNotContain(questionId);
 
         questionViewModel = QuestionViewModel.builder().hand(HandViewModel.builder().id(handId3).build()).cardTypes(List.of(CardType.BALLROOM, CardType.REVOLVER, CardType.PEACOCK)).showingCard(false).build();
 
         Long questionId1 = questionController.createQuestion(gameId1, questionViewModel).getBody().getId();
         questionController.deleteQuestion(questionId1);
 
-        assertThat(handController.getHand(handId3).getBody()).isNotNull();
-        assertThrows(NoSuchElementException.class, () -> questionController.getQuestion(questionId1));
+        assertThat(handController.getHands(gameId1).getBody()).extracting(HandViewModel::getId).contains(handId3);
+        assertThat(questionController.getQuestions(gameId1).getBody()).extracting(QuestionViewModel::getId).doesNotContain(questionId1);
     }
 }
