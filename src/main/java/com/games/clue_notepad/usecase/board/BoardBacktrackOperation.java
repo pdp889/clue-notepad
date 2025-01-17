@@ -36,10 +36,10 @@ public class BoardBacktrackOperation {
             //take the next set of questionCards
             List<CardType> questionCards = questionCardLists.get(i);
 
-            for (int j = 0; j < questionCards.size(); j++){
+            for (CardType cardType : questionCards){
                 //backtrack down the options in this cardList
 
-                current.add(questionCards.get(j));
+                current.add(cardType);
 
                 boolean foundMultipleSolutions  = backtrack(solutions, numCards, i+1, current, questionCardLists);
 

@@ -34,7 +34,7 @@ public class QuestionControllerTest {
         HandViewModel hand3 = HandViewModel.builder().playerName("Player 3").cardCount(4).build();
         HandViewModel hand4 = HandViewModel.builder().playerName("Player 4").cardCount(4).build();
 
-        handController.createHand(gameId1, hand1).getBody().getId();
+        handController.createHand(gameId1, hand1).getBody();
         Long handId2 = handController.createHand(gameId1, hand2).getBody().getId();
         Long handId3 = handController.createHand(gameId1, hand3).getBody().getId();
         handController.createHand(gameId1, hand4);
