@@ -1,4 +1,4 @@
-package com.games.clue_notepad.usecase.board;
+package com.games.clue_notepad.services.board;
 
 import com.games.clue_notepad.models.card.CardType;
 import lombok.experimental.UtilityClass;

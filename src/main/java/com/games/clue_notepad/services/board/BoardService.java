@@ -8,7 +8,6 @@ import com.games.clue_notepad.models.game.Game;
 import com.games.clue_notepad.models.hand.Hand;
 import com.games.clue_notepad.models.question.Question;
 import com.games.clue_notepad.services.game.GameService;
-import com.games.clue_notepad.usecase.board.BoardBacktrackOperation;
 import com.games.clue_notepad.utils.ListUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
