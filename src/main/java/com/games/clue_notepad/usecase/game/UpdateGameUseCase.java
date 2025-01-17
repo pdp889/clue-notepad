@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UpdateGameUseCase {
     private final GameService gameService;
+
     @Transactional
     public GameViewModel execute(Long id, GameViewModel gameViewModel){
         Game updated = gameService.update(id, gameViewModel);

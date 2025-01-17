@@ -24,6 +24,7 @@ import static com.games.clue_notepad.models.card.CardType.getCardTypesForCategor
 @Transactional
 public class BoardService {
     private final GameService gameService;
+
     public Board fillBoard(Long gameId){
         Game game = gameService.getById(gameId);
 
@@ -33,14 +34,30 @@ public class BoardService {
 
         Board board = new Board(sortedHands);
 
-        //add basic knowledge from hands
+
+        addBasicHandKnowledge(sortedHands, board);
+        addBasicQuestionKnowledge(game, board);
+
+        List<List<CellStatus>> cells;
+
+        //iterate over this to capture inferences we can deduce inferences from other inferences
+        do {
+            cells = ListUtil.copy(board.getCells());
+            doInferences(board, game);
+        } while(!ListUtil.deepEquals(cells, board.getCells()));
+
+        return board;
+    }
+
+    public void addBasicHandKnowledge(List<Hand> sortedHands, Board board){
         for (Hand hand : sortedHands){
             for (CardType cardType : hand.getCards()) {
                 board.setCell(cardType, hand, CellStatus.YES);
             }
         }
+    }
 
-        //add basic knowledge from questions
+    public void addBasicQuestionKnowledge(Game game, Board board){
         for (Question question : game.getQuestions()) {
             if (question.getCardTypeShown() != null) {
                 board.setCell(question.getCardTypeShown(), question.getHand(), CellStatus.YES);
@@ -50,16 +67,6 @@ public class BoardService {
                 }
             }
         }
-
-        List<List<CellStatus>> cells;
-
-        //iterate over this to capture inferences we can deduce from other inferences
-        do {
-            cells = ListUtil.copy(board.getCells());
-            doInferences(board, game);
-        } while(!ListUtil.deepEquals(cells, board.getCells()));
-
-        return board;
     }
 
     public void doInferences(Board board, Game game){

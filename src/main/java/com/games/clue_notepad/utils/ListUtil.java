@@ -14,7 +14,6 @@ public class ListUtil {
         }
         return copy;
     }
-
     public static <T extends Enum<T>> boolean deepEquals(List<List<T>> list1, List<List<T>> list2) {
 
         for (int i = 0; i < list1.size(); i++) {
@@ -29,5 +28,4 @@ public class ListUtil {
         }
         return true;
     }
-
 }

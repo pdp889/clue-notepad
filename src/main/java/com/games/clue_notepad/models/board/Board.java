@@ -14,7 +14,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Board {
-
     public static final String ENVELOPE_NAME = "Envelope";
 
     @Builder.Default

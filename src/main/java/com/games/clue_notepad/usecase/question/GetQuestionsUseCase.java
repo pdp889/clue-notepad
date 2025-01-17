@@ -15,8 +15,8 @@ import java.util.List;
 public class GetQuestionsUseCase {
     private final QuestionService questionService;
 
-@Transactional
-public List<QuestionViewModel> execute(Long id){
+    @Transactional
+    public List<QuestionViewModel> execute(Long id){
         List<Question> questions = questionService.getByGameId(id);
         return questions.stream()
                 .sorted(Comparator.comparing(Question::getId))

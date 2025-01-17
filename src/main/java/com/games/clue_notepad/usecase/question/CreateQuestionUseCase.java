@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 public class CreateQuestionUseCase {
     private final QuestionService questionService;
     private final GameService gameService;
+
     @Transactional
     public QuestionViewModel execute(Long gameId, QuestionViewModel questionViewModel){
         Question question = questionService.create(questionViewModel, gameService.getById(gameId));

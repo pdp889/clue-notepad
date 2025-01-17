@@ -17,7 +17,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Hand {
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;

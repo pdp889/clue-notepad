@@ -3,8 +3,6 @@ package com.games.clue_notepad.web.game;
 import com.games.clue_notepad.models.board.CellStatus;
 import com.games.clue_notepad.models.card.CardType;
 import org.assertj.core.api.AssertionsForClassTypes;
-import org.flywaydb.core.Flyway;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,9 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class GameControllerTest {
     @Autowired
     GameController gameController;
-
-    @Autowired
-    Flyway flyway;
 
     @Test
     void testGameControllerFunctions(){
@@ -51,8 +46,6 @@ public class GameControllerTest {
 
     @Test
     void testGameControllerBoardFunction(){
-//        flyway.clean();
-//        flyway.migrate();
 
         BoardViewModel boardViewModel = gameController.getBoard(1L).getBody(); //from flyway
 

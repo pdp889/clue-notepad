@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CreateGameUseCase {
     private final GameService gameService;
+
     public GameViewModel execute(GameViewModel gameViewModel){
         Game game = gameService.create(gameViewModel);
         return GameMapper.toViewModel(game);

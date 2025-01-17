@@ -14,8 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/hand")
 public class HandController {
-
-
     private final CreateHandUseCase createHandUseCase;
     private final DeleteHandUseCase deleteHandUseCase;
     private final GetHandsUseCase getHandsUseCase;

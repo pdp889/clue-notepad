@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UpdateQuestionUseCase {
     private final QuestionService questionService;
+
     @Transactional
     public QuestionViewModel execute(Long id, QuestionViewModel questionViewModel){
         Question updated = questionService.update(id, questionViewModel);

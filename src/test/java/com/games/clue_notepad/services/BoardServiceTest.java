@@ -259,7 +259,6 @@ public class BoardServiceTest {
 
 
         //add some questions to player 2, already has one for [KNIFE, HALL, MUSTARD]
-        //the only answer that satisfies all of these questions in 3 cards is [KNIFE, KITCHEN, STUDY] for remaining cards
 
         Question question3 = Question.builder()
                 .hand(player2Hand)
@@ -289,7 +288,7 @@ public class BoardServiceTest {
                 .game(game)
                 .build();
 
-        //without question7, it could either be [KNIFE, KITCHEN, STUDY] or [KNIFE, KITCHEN, WRENCH]
+        //without question7, it could either be more than 1 possibility
         questionRepo.saveAll(List.of(question, question1, question3, question4, question5, question6));
         Board board = boardService.fillBoard(gameId);
 

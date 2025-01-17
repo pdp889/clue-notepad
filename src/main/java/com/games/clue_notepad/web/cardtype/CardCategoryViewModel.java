@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class CardCategoryViewModel {
     String value;
+
     String label;
 
     @Builder.Default

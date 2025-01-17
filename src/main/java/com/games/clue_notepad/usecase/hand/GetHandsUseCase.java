@@ -13,7 +13,6 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetHandsUseCase {
-
     private final HandService handService;
 
     @Transactional

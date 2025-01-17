@@ -2,7 +2,6 @@ package com.games.clue_notepad.usecase.board;
 
 import com.games.clue_notepad.models.card.CardType;
 import lombok.experimental.UtilityClass;
-
 import java.util.*;
 
 @UtilityClass

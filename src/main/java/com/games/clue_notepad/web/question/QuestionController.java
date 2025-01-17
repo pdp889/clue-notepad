@@ -18,6 +18,7 @@ public class QuestionController {
     private final DeleteQuestionUseCase deleteQuestionUseCase;
     private final UpdateQuestionUseCase updateQuestionUseCase;
     private final GetQuestionsUseCase getQuestionsUseCase;
+
     @PostMapping("/{gameId}")
     public ResponseEntity<QuestionViewModel> createQuestion(@PathVariable Long gameId, @RequestBody QuestionViewModel questionViewModel){
         return ResponseEntity.ok(createQuestionUseCase.execute(gameId, questionViewModel));

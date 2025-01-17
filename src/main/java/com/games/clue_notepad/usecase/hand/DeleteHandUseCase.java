@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class DeleteHandUseCase {
-
     private final HandService handService;
 
     public void execute(Long id){
